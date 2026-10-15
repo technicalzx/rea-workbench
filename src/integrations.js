@@ -32,6 +32,7 @@ export function openCodeConfig(config) {
     $schema: 'https://opencode.ai/config.json',
     model: `omniroute/${config.model}`, enabled_providers: ['omniroute'],
     share: 'disabled', autoupdate: false,
+    ...(config.toolProfile === 'full' ? {} : { tools: { 'rea_*': false, rea_binary_session: true, rea_open_binary: true, rea_analyze_function: true, rea_search_strings: true, rea_analyze_javascript_application: true, rea_inspect_managed_artifact: true, rea_inspect_sqlite_database: true } }),
     provider: { omniroute: { npm: '@ai-sdk/openai-compatible', name: 'OmniRoute', options: { baseURL: config.baseURL, apiKey: '{env:OMNIROUTE_API_KEY}' }, models: { [config.model]: { name: config.model, tool_call: true } } } },
     mcp: { rea: { type: 'local', command: [process.execPath, reaEntry(), 'mcp'], environment: { ...(config.ghidraDir ? { GHIDRA_INSTALL_DIR: config.ghidraDir } : {}), ...(config.javaHome ? { JAVA_HOME: config.javaHome } : {}) }, enabled: true, timeout: 360000 } },
     permission: { '*': 'ask', read: 'ask', edit: 'ask', bash: 'ask', external_directory: 'ask', webfetch: 'ask', 'rea_*': 'ask' }

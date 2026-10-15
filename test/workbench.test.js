@@ -45,6 +45,8 @@ test('configuration validation, secret exclusion and exact secret redaction', as
   assert.equal(providerEnv(await loadConfig(), true).OMNIROUTE_API_KEY, process.env.OMNIROUTE_API_KEY);
   const config = openCodeConfig(await loadConfig());
   assert.equal(config.share, 'disabled'); assert.equal(config.permission.bash, 'ask');
+  assert.equal(config.tools['rea_*'], false); assert.equal(config.tools.rea_open_binary, true);
+  assert.equal(openCodeConfig({ ...await loadConfig(), toolProfile: 'full' }).tools, undefined);
   assert.equal(config.provider.omniroute.options.apiKey, '{env:OMNIROUTE_API_KEY}');
   assert.ok(!JSON.stringify(config).includes(process.env.OMNIROUTE_API_KEY));
   delete process.env.OMNIROUTE_API_KEY;

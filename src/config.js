@@ -12,14 +12,15 @@ export async function atomicJson(file, value) {
 }
 export function validateConfig(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Configuration must be an object');
-  const allowed = ['baseURL', 'model', 'ghidraDir', 'javaHome'];
+  const allowed = ['baseURL', 'model', 'ghidraDir', 'javaHome', 'toolProfile'];
   if (Object.keys(value).some(key => !allowed.includes(key))) throw new Error('Unknown configuration field; secrets belong in the environment');
   const baseURL = value.baseURL || 'http://127.0.0.1:20128/v1';
   const url = new URL(baseURL);
   if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) throw new Error('Invalid gateway URL');
   if (url.protocol !== 'https:' && !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname)) throw new Error('Remote gateways require HTTPS');
   for (const key of allowed) if (value[key] !== undefined && (typeof value[key] !== 'string' || value[key].length > 4096 || /[\r\n\0]/.test(value[key]))) throw new Error(`Invalid ${key}`);
-  return { baseURL: baseURL.replace(/\/+$/, ''), model: value.model || '', ghidraDir: value.ghidraDir || '', javaHome: value.javaHome || '' };
+  if (value.toolProfile && !['focused', 'full'].includes(value.toolProfile)) throw new Error('Invalid tool profile');
+  return { baseURL: baseURL.replace(/\/+$/, ''), model: value.model || '', ghidraDir: value.ghidraDir || '', javaHome: value.javaHome || '', toolProfile: value.toolProfile || 'focused' };
 }
 export async function loadConfig() {
   let stored = {};

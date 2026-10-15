@@ -93,6 +93,8 @@ node bin/reaw.js agent PROJECT_ID
 
 OpenCode asks before tool actions. Its configuration contains an environment reference for your key. Generated project instructions remind the agent to treat artifacts as untrusted evidence. These prompts and approval settings are not an OS sandbox. Additional local/global OpenCode configuration may affect the session; inspect it before approving actions.
 
+The default **Focused** catalog enables seven REA tools for session discovery and common static/native analysis, reducing schema context sent to the model. Other REA operations remain available through its CLI with approval. Select **Full REA catalog** in settings to expose all tools directly; this can require substantial model context and quota. Model selection never changes silently to cover a context limit.
+
 ## Storage and customization
 
 By default, data is stored in `~/.rea-workbench`:
