@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible problem using a harmless fixture
+body:
+  - type: markdown
+    attributes:
+      value: Do not include secrets, private targets or sensitive reports. Use SECURITY.md for vulnerabilities.
+  - type: input
+    id: version
+    attributes:
+      label: Version and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Actual result and sanitized evidence
+    validations:
+      required: true

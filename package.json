@@ -1,0 +1,19 @@
+{
+  "name": "rea-workbench",
+  "version": "0.1.0",
+  "description": "Local investigation workspace for REA, OmniRoute and OpenCode",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": "^22.19.0 || ^24.11.0 || >=26.0.0" },
+  "bin": { "reaw": "bin/reaw.js" },
+  "scripts": {
+    "start": "node bin/reaw.js serve",
+    "test": "node --test",
+    "check": "node scripts/check.js",
+    "prepare:agent": "node node_modules/opencode-ai/postinstall.mjs",
+    "sbom": "npm sbom --sbom-format cyclonedx > sbom.cdx.json"
+  },
+  "dependencies": { "rea-agents": "6.5.0", "opencode-ai": "1.19.0" },
+  "repository": { "type": "git", "url": "https://github.com/ycgiio/rea-workbench.git" }
+}
