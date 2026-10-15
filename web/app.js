@@ -21,7 +21,9 @@ async function download(response, filename) {
   const url = URL.createObjectURL(await response.blob()); const link = document.createElement('a'); link.href = url; link.download = filename; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 async function showProject(id, polling = false) {
+  const wasRunning = active?.id === id && active.runs?.some(run => run.status === 'running');
   active = await json(`/projects/${id}`); panel('project-panel');
+  if (wasRunning && !active.runs.some(run => run.status === 'running')) notice('Analysis finished. Review its status, evidence, and diagnostics below.');
   $('#project-name').textContent = active.name; $('#project-goal').textContent = active.goal; $('#scope').textContent = active.scope; $('#directory').textContent = active.directory;
   $('#project-status').textContent = active.status === 'active' ? 'ACTIVE INVESTIGATION' : 'ARCHIVED INVESTIGATION';
   $('#archive').textContent = active.status === 'active' ? 'Archive' : 'Restore';

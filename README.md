@@ -142,7 +142,7 @@ npm audit --audit-level=high
 npm run sbom
 ```
 
-See [security policy](SECURITY.md), [threat model](docs/THREAT-MODEL.md), [standards mapping](docs/STANDARDS.md), [architecture](docs/ARCHITECTURE.md), and [roadmap](docs/ROADMAP.md).
+See [security policy](SECURITY.md), [threat model](docs/THREAT-MODEL.md), [standards mapping](docs/STANDARDS.md), [architecture](docs/ARCHITECTURE.md), [customization](docs/CUSTOMIZE.md), [validation record](docs/VERIFICATION.md), and [roadmap](docs/ROADMAP.md).
 
 Workbench is an early single-user local application. It is not a multi-user cloud service, malware sandbox, or certified forensic system. Do not expose its port using a tunnel or reverse proxy. Inspect untrusted binaries in an isolated environment. There is no blanket claim of regulatory compliance or unrestricted access to third-party tools. Authorization, privacy, applicable law, and upstream licenses still apply.
 
