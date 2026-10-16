@@ -34,7 +34,7 @@ flowchart LR
 Install a supported Node.js release: 22.x >=22.19, 24.x >=24.11, or 26+. Git is needed to clone this repository. Then:
 
 ```sh
-git clone https://github.com/AbiHurairah-OpenSource/rea-workbench.git
+git clone https://github.com/technicalzx/rea-workbench.git
 cd rea-workbench
 npm ci
 npm run prepare:agent

@@ -15,5 +15,5 @@
     "sbom": "npm sbom --sbom-format cyclonedx > sbom.cdx.json"
   },
   "dependencies": { "rea-agents": "6.5.0", "opencode-ai": "1.19.0" },
-  "repository": { "type": "git", "url": "https://github.com/AbiHurairah-OpenSource/rea-workbench.git" }
+  "repository": { "type": "git", "url": "https://github.com/technicalzx/rea-workbench.git" }
 }
