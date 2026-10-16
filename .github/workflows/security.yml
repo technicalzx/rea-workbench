@@ -10,6 +10,9 @@ permissions:
   contents: read
 jobs:
   codeql:
+    # technicalzx uses GitHub's managed default setup. Opt in here only after
+    # switching the repository to advanced setup; never run both configurations.
+    if: vars.CODEQL_ADVANCED_SETUP == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -32,6 +35,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: gitleaks/gitleaks-action@dcedce43c6f43de0b836d1fe38946645c9c638dc # v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install pinned open-source Gitleaks CLI
+        run: go install github.com/zricethezav/gitleaks/v8@v8.30.1
+      - name: Scan complete Git history with redacted findings
+        run: '"$(go env GOPATH)/bin/gitleaks" git --redact --no-banner --log-opts="--all" .'

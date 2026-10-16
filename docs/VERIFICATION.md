@@ -21,3 +21,18 @@ Date: 2026-10-15. This record describes executed checks at project creation, not
 The repository defines tests and a real synthetic REA smoke run for Linux Node 22/24, Windows Node 24 and macOS Node 24, plus dependency audit and SBOM generation. CodeQL and Gitleaks run separately. Consult the [Actions page](https://github.com/technicalzx/rea-workbench/actions) for the exact commit and current job conclusions; a queued job is not a passing result.
 
 Native-engine checks and live model calls are not included in contribution CI. Independent security review, fuzzing, destructive recovery tests, malware isolation, remote/team deployment and a complete standards assessment remain outstanding.
+# Organization publication checks â€” 2026-10-16
+
+The technicalzx migration retains the original Git history. CI passed on Linux
+(Node 22 and 24), Windows (Node 24), and macOS (Node 24), including the smoke,
+dependency-audit and SBOM jobs. See the repository's Actions page for the exact
+commit and subsequent security-workflow results.
+
+The technicalzx repository uses GitHub's managed default CodeQL setup, which
+has completed analysis successfully. The checked-in advanced CodeQL job is an
+alternative: set the repository variable `CODEQL_ADVANCED_SETUP=true` only after
+switching GitHub from default to advanced setup. Fork maintainers must configure
+one of those setups for their own repository; running both rejects uploads.
+Secret scanning uses the pinned MIT-licensed Gitleaks CLI,
+with findings redacted and all Git history scanned. The organization-license
+requirement of the separate Gitleaks Action does not apply to this CLI.
